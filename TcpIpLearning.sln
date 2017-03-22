@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "TcpIpLearning\Ser
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{F7EBB6E7-FB64-4970-9049-306E28F4307F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{B6BE7314-83C1-47A2-921F-0C4C406F98D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F7EBB6E7-FB64-4970-9049-306E28F4307F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7EBB6E7-FB64-4970-9049-306E28F4307F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7EBB6E7-FB64-4970-9049-306E28F4307F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6BE7314-83C1-47A2-921F-0C4C406F98D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6BE7314-83C1-47A2-921F-0C4C406F98D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6BE7314-83C1-47A2-921F-0C4C406F98D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6BE7314-83C1-47A2-921F-0C4C406F98D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
