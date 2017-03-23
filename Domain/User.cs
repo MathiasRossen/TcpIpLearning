@@ -9,7 +9,19 @@ namespace Domain
     [Serializable]
     public class User
     {
-        public string Name { get; set; }
+        string name;
+
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                name = value;
+
+                if (name.Length > 20)
+                    name = name.Substring(0, 20);
+            }
+        }
 
         public User(string name)
         {

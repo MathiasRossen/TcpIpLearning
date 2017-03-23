@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="ClientUI.Views.Chat"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClientUI.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <TextBox x:Name="nameBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="10,10,0,0"/>
+        <Button x:Name="connectButton" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Connect" Margin="120,9,0,0" Width="55" Click="ConnectButton_Click" />
+        <ScrollViewer x:Name="chatScrollBar" VerticalAlignment="Top" HorizontalAlignment="Left" Height="475" Width="590" VerticalScrollBarVisibility="Auto" Margin="10,40,0,0">
+            <StackPanel x:Name="chatWindow" VerticalAlignment="Top">
+            </StackPanel>
+        </ScrollViewer>
+        <TextBox x:Name="chatMessage" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" KeyDown="chatMessage_KeyDown" Width="590"/>
+    </Grid>
+</UserControl>
