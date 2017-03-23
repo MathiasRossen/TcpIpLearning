@@ -92,14 +92,19 @@ namespace Client
 
         private void WriteMessage(string message, int height)
         {
-            int writingPosition = Console.CursorTop;
-            Console.MoveBufferArea(0, 1, Console.WindowWidth, height - 2, 0, 0);
-            Console.SetCursorPosition(0, height - 2);
+            int topPosition = Console.CursorTop;
+            int leftPosition = Console.CursorLeft;
+
+            Console.MoveBufferArea(0, 1, Console.WindowWidth, height - 3, 0, 0);
+            Console.SetCursorPosition(0, height - 3);
             Console.Write(message);
             Console.Write(new string(' ', Console.WindowWidth - message.Length));
-            Console.SetCursorPosition(0, writingPosition - 1);
-            Console.Write("Say: " + new string(' ', Console.WindowWidth - 5));
-            Console.SetCursorPosition(5, writingPosition - 1);
+            Console.SetCursorPosition(0, topPosition - 1);
+            //Console.Write("Say: " + new string(' ', Console.WindowWidth - 5));
+            //Console.SetCursorPosition(0, topPosition - 1);
+            Console.SetCursorPosition(leftPosition, height + 2);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(leftPosition, height + 2);
         }
 
         // Old method that is preserved to use as example
