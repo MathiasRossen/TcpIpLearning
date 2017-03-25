@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "TcpIpLearning\Server.csproj", "{98A08FD7-7D83-4096-BBFB-3C0C228B0C88}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatServer", "TcpIpLearning\ChatServer.csproj", "{98A08FD7-7D83-4096-BBFB-3C0C228B0C88}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{F7EBB6E7-FB64-4970-9049-306E28F4307F}"
 EndProject

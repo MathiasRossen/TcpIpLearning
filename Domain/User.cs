@@ -16,7 +16,7 @@ namespace Domain
             get { return name; }
             set
             {
-                name = value;
+                name = value.Trim();
 
                 if (name.Length > 20)
                     name = name.Substring(0, 20);
@@ -26,6 +26,23 @@ namespace Domain
         public User(string name)
         {
             Name = name;
+        }
+
+        public override string ToString()
+        {
+            return Name.ToLower();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj != null)
+                return ToString() == obj.ToString();
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

@@ -2,152 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Net;
-using System.Net.Sockets;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using Domain;
 
-namespace Server
+namespace ChatServer
 {
     class Program
     {
-        IFormatter formatter;
-        List<NetworkStream> streams;
-
         static void Main(string[] args)
         {
             Console.Title = "Server";
-            Program p = new Program();
-            p.Run();
-        }
-
-        private void Run()
-        {
-            TcpListener server = null;
-            formatter = new BinaryFormatter();
-            streams = new List<NetworkStream>();
-
-            try
-            {
-                int port = 10999;
-                IPAddress localAddress = IPAddress.Parse("127.0.0.1");
-                server = new TcpListener(localAddress, port);
-
-                server.Start();
-
-                Console.WriteLine("Server is up..");
-                while (true)
-                {
-                    TcpClient client = server.AcceptTcpClient();
-                    new Thread(() => HandleClient(client)).Start();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString() + ": " + e.Message);
-            }
-            finally
-            {
-                server.Stop();
-            }
-
-            Console.WriteLine("Server has stopped..");
-            Console.ReadLine();
-        }
-
-        private void HandleClient(TcpClient client)
-        {
-            User user = new User("Unknown");
-            Message message;
-
-            try
-            {
-                NetworkStream stream = client.GetStream();
-                streams.Add(stream);
-
-                user = (User)formatter.Deserialize(stream);
-                Console.WriteLine("{0} has connected!", user.Name);
-                formatter.Serialize(stream, new Message() { User = new User("Server"), Content = "You are connected to the public channel!" });
-
-                while (stream.CanRead)
-                {
-                    message = (Message)formatter.Deserialize(stream);
-                    Console.WriteLine("{0}: {1}", message.User.Name, message.Content);
-
-                    foreach (NetworkStream s in streams)
-                    {
-                        formatter.Serialize(s, message);
-                    }
-                }
-            }
-            // Catch-all exception to handle disconnections
-            catch
-            {
-                Console.WriteLine("{0} has disconnected..", user.Name);
-            }
-            finally
-            {
-                client.Close();
-            }
-        }
-
-        // Old method that is preserved to use as example
-        private void SendString()
-        {
-            TcpListener server = null;
-
-            try
-            {
-                int port = 10999;
-                IPAddress localAddress = IPAddress.Parse("127.0.0.1");
-                server = new TcpListener(localAddress, port);
-
-                server.Start();
-
-                string data = null;
-                byte[] bytes = new byte[256];
-
-                while (true)
-                {
-                    Console.WriteLine("Waiting for connection...");
-
-                    TcpClient client = server.AcceptTcpClient();
-                    Console.WriteLine("Connected!");
-
-                    data = null;
-                    NetworkStream stream = client.GetStream();
-
-                    int i;
-                    while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
-                    {
-                        data = Encoding.ASCII.GetString(bytes, 0, i);
-                        Console.WriteLine("Recieved: {0}", data);
-
-                        data = data.ToUpper();
-
-                        byte[] msg = Encoding.ASCII.GetBytes(data);
-
-                        stream.Write(msg, 0, msg.Length);
-                        Console.WriteLine("Sent: {0}", data);
-                    }
-
-                    //client.Close();
-                }
-            }
-            catch (System.IO.IOException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            finally
-            {
-                server.Stop();
-            }
-
-            Console.WriteLine("Server has stopped..");
-            Console.ReadLine();
+            Server server = new Server();
+            server.Start();            
         }
     }
 }

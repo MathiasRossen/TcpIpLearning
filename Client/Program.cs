@@ -33,7 +33,7 @@ namespace Client
             name = SetName();
 
             ip = IPAddress.Parse("127.0.0.1");
-            port = 10999;
+            port = 10101;
             formatter = new BinaryFormatter();
 
             using (TcpClient client = new TcpClient())
@@ -78,7 +78,7 @@ namespace Client
             while (true)
             {
                 message = (Message)formatter.Deserialize(stream);
-                WriteMessage(string.Format("{0}: {1}", message.User.Name, message.Content), height);
+                WriteMessage(message.ToString(), height);
             }
         }
 
